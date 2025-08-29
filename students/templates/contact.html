@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        *{
+            margin: 0;
+        }
+        .maindiv{
+            display: flex;
+        }
+        .div1{
+            border: 2px solid black;
+            height: 400px;
+            width: 400px;
+            margin-left: 550px;
+            margin-top: 150px;
+            text-align: center;
+            flex: 1;
+        }
+        .div2{
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navigation.html' %}
+    <div class="maindiv">
+        <h1>Contact Us</h1>
+        <div class="div1">
+            <h3>Send Message</h3>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="lev">First Name</label>
+                <br>
+                <input type="text" name="fname" placeholder="First Name" required>
+                <br>
+                <label class="lev">Last Name</label>
+                <br>
+                <input type="text" name="lname" placeholder="Last Name" required>
+                <br>
+                <label class="lev">Email</label>
+                <br>
+                <input type="email" name="email" placeholder="Email" required>
+                <br>
+                <label class="lev">Message</label>
+                <br>
+                <textarea name="description" placeholder="Message" cols="50" rows="5"></textarea>
+                <br>
+                <input id="sum" type="submit" value="SUBMIT">
+            </form>
+        </div>
+        <div class="div2">
+            <p>Phone <br> 123-456-7891</p>
+            <p>Email <br> abc@gmail.com</p>
+            <p>Address <br> 456 ABC Road, MNO, XYZ <br> 556028</p>
+        </div>
+    </div>
+</body>
+</html>

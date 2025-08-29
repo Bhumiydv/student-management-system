@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Add Student</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: verdana;
+			box-sizing: border-box;
+		}
+		body{
+			background-color: #f4f6f8
+		}
+		h1{
+			color:white;
+			background-color: black;
+			padding: 15px;
+			text-align: center;
+		}
+		.form-container{
+			max-width: 600px;
+			margin: 40px auto;
+			background-color: #fff;
+			padding: 30px;
+			border-radius: 12px;
+			box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
+		}
+		.form-group{
+			margin-top: 15px;
+		}
+		label{
+			display: block;
+			margin-bottom: 8px;
+			font-weight: 600;
+		}
+		input,select{
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+            border-radius: 8px;
+		}
+		.add-btn{
+              margin-top: 15px;
+              background-color: #4398db;
+              color: white;
+              padding: 12px 20px;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 16px;
+              transition: background-color 0.3s ease;
+              position: relative;
+              left: 230px;
+		}
+		.add-btn:hover{
+			background-color: #2980b9;
+		}
+	</style>
+</head>
+<body>
+	<h1>Add Students</h1>
+    <div class="form-container">
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="name">Full name</label>
+				<input type="text" name="fname" placeholder="Enter Full Name" required>
+		    </div>
+			<div class="form-group">
+			    <label for="email">Email</label>
+			    <input type="email" name="email" placeholder="Enter Email" required>
+		    </div>
+		    <div class="form-group">
+		    	<label for="phone">Phone Number</label>
+			    <input type="tel" name="phone" placeholder="Enter Contact Number" required>
+		    </div>
+		    <div class="form-group">
+			    <label for="college">College Name</label>
+			    <input type="text" name="college" placeholder="Enter College Name" required>
+		    </div>
+		    <div class="form-group">
+			    <label for="city">City name</label>
+			    <input type="text" name="city" placeholder="Enter City Name" required>
+		    </div>
+		    <div class="form-group">
+			    <label for="jdate">Join Date</label>
+			    <input type="date" name="jdate"  required>
+		    </div>
+		    <div class="form-group">
+	       	    <label for="tfee">Total fee</label>
+			    <input type="text" name="tfee" placeholder="Enter Total Fee" required>
+		    </div>
+		    <div class="form-group">
+			    <label for="pfee">Paid fee</label>
+			    <input type="text" name="pfee" placeholder="Enter Paid Fee" required>
+		    </div>
+		    <div class="form-group">
+			    <label for="lfee">Left fee</label>
+			    <input type="text" name="lfee" placeholder="Enter Left Fee" required>
+		    </div>
+		    <div class="form-group">
+			    <label for="technology">Select Technology</label>
+			    <select name="technology">
+					<option selected disabled>Select Technology</option>
+				    <option value="Python">Python</option>
+				    <option value="Java">Java</option>
+				    <option value="Mern">Mern</option>
+				    <option value="Php">Php</option>
+				    <option value="Asp.net">Asp.net</option>
+			    </select>	
+		    </div>
+		    <div class="form-group">
+			    <label for="image">Upload Image</label>
+			    <input type="file" name="image"  required>
+		    </div>
+		    <button type="submit"  class="add-btn" >Submit</button>
+	    </form>
+	    <a href="{% url 'admin_dashboard' %}" class="back-link">Back to Dashboard</a>
+    </div>
+{% if error == "no" %}
+<script>
+    alert("Record Added Successfully")
+    window.location=("{% url 'view_students' %}")
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something Went Wrong")
+</script>
+{% endif %}
+</body>
+</html>

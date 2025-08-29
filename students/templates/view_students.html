@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Records</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #f4f6f8;
+            padding: 30px;
+        }
+        h1{
+            background-color: #000;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+        table{
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            border-collapse: collapse;
+        }
+        th,td{
+            padding: 14px 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+            font-size: 14px;
+        }
+        th{
+            background-color: #0077cc;
+            color: white;
+            text-transform: uppercase;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover{
+            background-color: #f0f0ff;
+        }
+        .edit_btn{
+            padding: 6px 6px;
+            font-size: 13px;
+            border-radius: 5px;
+            text-decoration: none;
+            background-color: green;
+            color: white;
+        }
+        .del_btn{
+            margin-left: 4px;
+            padding: 6px 6px;
+            font-size: 13px;
+            border-radius: 5px;
+            text-decoration: none;
+            background-color: red;
+            color: white;
+            border: none;
+        }
+        .lfee0{
+            background-color: green;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .form{
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin: auto;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        label{
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .input{
+            width: 100%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .btn{
+            padding: 10px 20px;
+            background-color: #0077cc;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3 ease;
+        }
+        .btn:hover{
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Students Records</h1>
+    <form method="post" action="/search_stu" class="form">
+        {% csrf_token %}
+        <label for="q">Enter Name
+            <input type="text" name="sname" placeholder="Search Students..." id="q" required class="input">
+            <input type="submit" value="Search" class="btn">
+        </label>
+    </form>
+    <table>
+        <tr>
+            <th>S.N</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>College</th>
+            <th>City</th>
+            <th>Joining Date</th>
+            <th>Total Fee</th>
+            <th>Paid Fee</th>
+            <th>Left Fee</th>
+            <th>Technology</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.college}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.jdate}}</td>
+            <td>{{i.tfee}}</td>
+            <td>{{i.pfee}}</td>
+            <td>{% if i.lfee > '0' %}
+                <span class="lfee1">{{i.lfee}}</span>
+                {% endif %}
+
+                {% if i.lfee == '0' %}
+                <span class="lfee0">Paid <i class="fa-regular fa-circle-check fa-lg"></i></span>
+                {% endif %}
+            </td>
+            <td>{{i.technology}}</td>
+            <td class="img"><img src="{{i.image.url}}" height="75" 
+            width="75" alt="no image"></td>
+            <td class="btn1"><a href="{% url 'edit_students' i.id %}" class="edit_btn"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                <form method="post" style="display: inline;" action="{% url 'del_students' i.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="del_btn" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash fa-lg"></i></button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'admin_dashboard' %}" class="back-link">Back to Dashboard</a>
+</body>
+</html>

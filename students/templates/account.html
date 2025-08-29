@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        h1{
+            background-color: #000;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form{
+            border: 2px solid black;
+            height: 350px;
+            width: 400px;
+            padding-left: 150px;
+            margin-left: 500px;
+            margin-top: 100px;
+            padding-top: 40px;
+            border-radius: 1em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);;
+        }
+        .input{
+            margin-top: 5px;
+            margin-bottom: 20px;
+            height: 30px;
+            width: 240px;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+        .btn{
+            height: 35px;
+            width: 150px;
+            margin-left: 50px;
+            border-radius: 5px;
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Change Password</h1>
+    <form method="post" onsubmit="check_password()" action="/change_pass">
+        {% csrf_token %}
+        <label for="cp">
+            Current Password<br>
+            <input type="password" name="cp" id="cp" class="input">
+        </label>
+        <br>
+        <label for="np">
+            New Password<br>
+            <input type="password" name="np" id="np" class="input">
+        </label>
+        <br>
+        <label for="cop">
+            Confirm Password<br>
+            <input type="password" name="cop" id="cop" class="input">
+        </label>
+        <br>
+        <input type="submit" value="Update Password" class="btn">
+    </form>
+    <script>
+        function check_password(){
+            let np=document.getElementById('np').value
+            let cop=document.getElementById('cop').value
+            if(np!=cop){
+                alert('New password and Confirm password does not match')
+                console.log('error')
+            }
+        }
+    </script>
+</body>
+</html>

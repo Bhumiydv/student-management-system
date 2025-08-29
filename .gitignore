@@ -1,0 +1,25 @@
+# .gitignore for Django/Python
+
+# Virtual environment folders (ALWAYS ignore these!)
+venv/
+env/
+.venv/
+
+# Database file (your local SQLite3)
+*.sqlite3
+*.db
+
+# Python cache folders
+__pycache__/
+*.pyc
+
+# IDE/Editor settings (optional but recommended)
+.vscode/
+.idea/
+
+# Environment variables (VERY IMPORTANT for security!)
+.env
+*.env
+
+# Collected static files (if you run collectstatic)
+/staticfiles/

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Dashboard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        *{
+            margin: 0;
+        }
+        .topbar{
+            padding: 15px 20px;
+            background-color: rgb(54, 54, 123);
+            color: white;
+            text-align: center;
+            font-size: 25px;
+        }
+        .option{
+            height: 100px;
+            width: 1250px;
+            border: 2px solid grey;
+            margin: 10px;
+            border-radius: 1em;
+            padding: 10px 0 10px 20px;
+            font-size: 23px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+       }
+       table{
+        margin: 50px;
+       }
+       table tr td{
+        padding-left: 50px;
+        padding-top: 20px;
+       }
+       .option a{
+        border: 2px solid none;
+        padding: 8px 25px;
+        border-radius: 1em;
+        color: white;
+        background-color: rgb(36, 187, 224);
+        text-decoration: none;
+       }
+    </style>
+</head>
+<body>
+    {% include 'navigation.html' %}
+    <div class="topbar">
+    <p>Students Records Dashboard</p>
+    </div>
+    <table>
+        <tr>
+            <td>
+                <div class="option">
+                    Add Student
+                    <br><br>
+                    <a href="{% url 'add_student' %}">Go</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="option">
+                    View Records
+                    <br><br>
+                    <a href="{% url 'view_students' %}">Go</a>
+               </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="option">
+                    Search Records
+                    <br><br>
+                    <a href="{% url 'search' %}">Go</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="option">
+                    Account
+                    <br><br>
+                    <a href="{% url 'account' %}">Go</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="option">
+                    Logout
+                    <br><br>
+                    <a href="{% url 'logout' %}" style="background-color: rgb(225, 28, 28);" onclick="return confirm('Are you sure?')">Go</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

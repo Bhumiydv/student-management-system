@@ -1,4 +1,4 @@
-# student-management-system
+# Student management system
 
 A Django-based web application designed to manage student records with ease and efficiency. This system allows administrators to add, edit, search, and track student information through a clean and responsive interface.
 
@@ -14,7 +14,7 @@ A Django-based web application designed to manage student records with ease and 
 
 - Backend: Django (Python)
 - Database: SQLite
-- Frontend: HTML, CSS, Bootstrap (if used)
+- Frontend: HTML, CSS
 - Authentication: Django Built-in Auth
 
 ## Installation & Setup
